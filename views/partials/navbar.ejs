@@ -10,21 +10,29 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/products">Home</a>
         </li>
-
-        <li class="nav-item">
+        <% if(currentUser && currentUser.role === 'seller'){ %>
+           <li class="nav-item">
           <a class="nav-link" href="product/new">New</a>
         </li>
+
+          <%} %>
+
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="product/new">New</a>
+        </li> -->
       
       </ul>
       <div class="d-flex" role="search">
 
         <% if(!currentUser){ %>
-          <a href="/login"  class="nav-link">Login</a>
+          <a href="/login"  class="nav-link mx-2">Login</a>
           
         <% } else { %>
+          <a href="#"  class="nav-link mx-2">Hello, <%= currentUser.username %></a>
           <a href="#"  class="nav-link position-relative mx-2">
-          <i class="fa-solid fa-cart-shopping"></i>
-          <sup><span class="badge bg-danger">2</span></sup>
+          <i class="fa-solid fa-cart-shopping" style="color: #151414;"></i>  
+          <sup><span class="badge bg-danger"><%=currentUser.cart.length%></span></sup>
         </a>
         
         <a href="/logout"  class="nav-link">Logout</a>

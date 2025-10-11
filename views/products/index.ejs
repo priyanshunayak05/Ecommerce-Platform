@@ -16,9 +16,12 @@
 
   <a href="/products/<%=item._id%>" class="btn btn-info">View Product</a>
   <!-- <a href="/products/<%=item._id%>/edit" class="btn btn-sm btn-dark">Add Prp</a> -->
+
+  <% if(currentUser && currentUser.role === 'seller'){ %>
   <form class=" d-inline-block" action="/products/<%=item._id%>?_method=DELETE" method="POST">
     <button class="btn btn-sm btn-danger">Delete</button>
   </form>
+  <% } %>
   </div>
   </div>
   </div>

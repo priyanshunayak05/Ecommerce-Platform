@@ -3,7 +3,7 @@ const router= express.Router();
 const Product= require('../models/Product');
 const Review= require('../models/Review');
 
-const {validateProduct,isLoggedIn}= require('../middleware');
+const {validateProduct,isLoggedIn,isSeller, isProductAuthor}= require('../middleware');
 
 
 
@@ -31,11 +31,11 @@ router.get('/product/new',isLoggedIn,(req,res)=>{
 // to actually add the product
 // validateProduct is a middleware to validate the product data before creating a new product
 // Extracts product details from the form, creates a new product in the database, and redirects to the products list.
-router.post('/products',validateProduct, isLoggedIn,async(req,res)=>{
+router.post('/products',validateProduct, isLoggedIn, isSeller,async(req,res)=>{
 
     try {
     let {name, price, description, imageUrl}= req.body;
-    await Product.create({name, price, description, imageUrl});
+    await Product.create({name, price, description, imageUrl,author: req.user._id});
     req.flash('success','Product added successfully')
     res.redirect('/products');
     } catch (e) {
@@ -91,7 +91,7 @@ router.patch('/products/:id', validateProduct, isLoggedIn,async(req,res)=>{
 
 
 // to delete a product
-router.delete('/products/:id',isLoggedIn, async(req,res)=>{
+router.delete('/products/:id',isLoggedIn,isProductAuthor, async(req,res)=>{
 
     try {
     let {id}=req.params;

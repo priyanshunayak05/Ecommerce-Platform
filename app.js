@@ -21,7 +21,7 @@ const reviewRoutes= require('./routes/review');
 
 const authRoutes= require('./routes/auth');
 
-//
+const cartRoutes= require('./routes/cart');
 
 
 // override with POST having ?_method=DELETE
@@ -103,6 +103,7 @@ app.use(reviewRoutes); // so that har incoming routes will go to review routes f
 
 app.use(authRoutes); // so that har incoming routes will go to auth routes first
 
+app.use(cartRoutes); // so that har incoming routes will go to cart routes first
 
 
 

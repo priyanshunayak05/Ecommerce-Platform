@@ -11,7 +11,11 @@ const productSchema = new mongoose.Schema({
     review:[{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Review'
-    }]
+    }],
+    author:{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
 
 });
 

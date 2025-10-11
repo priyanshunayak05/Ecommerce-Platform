@@ -1,6 +1,7 @@
 
 // These are Joi schemas used for validation.
 const { productSchema, reviewSchema } = require('./schema') // importing the schemas
+const Product = require('./models/Product'); // required for authorization checks
 
 // Middleware for product validation
 const validateProduct = (req, res, next) => {
@@ -30,4 +31,27 @@ const isLoggedIn = (req, res, next) => {
     next();
 }
 
-module.exports = {isLoggedIn, validateProduct, validateReview };
+const isSeller = (req, res, next) => {
+    if(!req.user.role){
+        req.flash('error', 'You do not have permission to do that!');
+        return res.redirect('/products');
+    }
+    else if(req.user.role !== 'seller'){
+        req.flash('error', 'You do not have permission to do that!');
+        return res.redirect('/products');
+    }
+    next();
+}
+
+
+const isProductAuthor = async (req, res, next) => {
+    let { id } = req.params;
+    let foundProduct = await Product.findById(id);
+    if(!foundProduct.author.equals(req.user._id)){
+        req.flash('error', 'You do not have permission to do that!');
+        return res.redirect('/products/');
+    }
+    next();
+}
+
+module.exports = {isLoggedIn, validateProduct, validateReview , isSeller , isProductAuthor};

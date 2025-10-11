@@ -6,7 +6,17 @@ const userSchema = new mongoose.Schema({
     email: {type: String,
        required: true,
        trim: true, 
-       unique: true}
+       unique: true
+    },
+       role: {
+        type: String,
+        required: true
+       
+    },
+    cart:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
 })
 
 userSchema.plugin(passportLocalMongoose);
