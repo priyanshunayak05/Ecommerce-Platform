@@ -1,7 +1,13 @@
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const path= require('path');
 const seedDb= require('./seed');
+
+const mongoose = require('mongoose');
 
 const methodOveride= require('method-override');
 const ejsMate=require('ejs-mate');
@@ -23,13 +29,25 @@ const authRoutes= require('./routes/auth');
 
 const cartRoutes= require('./routes/cart');
 
+const productApi= require('./routes/api/productapi');
+
+
+const dbURL= process.env.DB_URL || 'mongodb://localhost:27017/Shopping-app';
+
+
+app.use(productApi); // all routes in product api will be prefixed with /api
+
 
 // override with POST having ?_method=DELETE
 app.use(methodOveride('_method'));
 
 // database connection
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/Shopping-app')
+
+mongoose.set('strictQuery', true); // to avoid deprecation warning
+
+
+// const mongoose = require('mongoose');  //remove when connect dbURL is used
+mongoose.connect(dbURL)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));  
 
@@ -105,6 +123,7 @@ app.use(authRoutes); // so that har incoming routes will go to auth routes first
 
 app.use(cartRoutes); // so that har incoming routes will go to cart routes first
 
+app.use(productApi); // all routes in product api will be prefixed with /api
 
 
 

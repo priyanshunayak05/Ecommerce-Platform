@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') -%>
-
+<%-include('../partials/header')%>
 <%- include('../partials/navbar') %>
 <%- include('../partials/flash') %>
 
@@ -11,8 +11,23 @@
   <div class="card" style="width: 18rem;">
   <img src="<%=item.imageUrl%>" class="card-img-top" alt="...">
   <div class="card-body">
-  <h2 class="card-title">$<%=item.price%></h2>
-  <h5 class="card-title"><%=item.name%></h5>
+  
+  <h3 class="card-title"><%=item.name%></h3>
+  <span class="btn like-btn" product-id="<%=item._id%>" >
+                    <% if(currentUser && currentUser.wishlist.includes(item._id)){ %>
+                        <i class="fas fa-heart"></i>
+                    <% } else{ %>
+                        <i class="far fa-heart"></i>
+                    <% } %>
+
+                  </span>
+                  <h5 class="card-title">$<%=item.price%></h5>
+                  <p class="card-text"> <%=item.description %></p>
+                  <p class="card-text"> <%=item.instock %></p>
+
+                  
+
+
 
   <a href="/products/<%=item._id%>" class="btn btn-info">View Product</a>
   <!-- <a href="/products/<%=item._id%>/edit" class="btn btn-sm btn-dark">Add Prp</a> -->
@@ -31,6 +46,7 @@
 
 
 </div>
-
+<script src="/js/common.js"></script>
+<%-include('../partials/footer')%>
 </body>
 </html>

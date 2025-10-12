@@ -1,9 +1,68 @@
 <% layout('layouts/boilerplate') -%>
 <%- include('../partials/navbar') %>
 
+<section class="container mt-4">
+    <h2 class="mb-4">Your Cart</h2>
 
-<ul>
-    <% for(let item of user.cart){ %>
-    <li><%= item.name %> - $<%= item.price %></li>
-    <% } %>
-</ul>
+    <div class="row">
+        <!-- Left: Cart items -->
+        <div class="col-lg-8">
+            <% if (user.cart && user.cart.length > 0) { %>
+                <% for (let item of user.cart) { %>
+                    <div class="d-flex align-items-center border rounded p-2 mb-3 shadow-sm">
+                        <!-- Product Image -->
+                        <img src="<%= item.imageUrl %>" 
+                            alt="<%= item.name %>" 
+                            style="width: 100px; height: 100px; object-fit: cover; border-radius: 10px;">
+
+                        <!-- Product Info -->
+                        <div class="ms-3 flex-grow-1">
+                            <h5 class="mb-1"><%= item.name %></h5>
+                            <p class="text-muted mb-0"><%= item.description %></p>
+                        </div>
+
+                        <!-- Price + Remove -->
+                        <div class="text-end">
+                            <p class="fw-bold mb-2">$<%= item.price %></p>
+                            <form method="POST" action="/user/<%= item._id %>/remove">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <p class="text-muted">Your cart is empty.</p>
+            <% } %>
+        </div>
+
+        <!-- Right: Summary + Payment -->
+        <div class="col-lg-4">
+            <% if (user.cart && user.cart.length > 0) { %>
+                <ul class="list-group mb-3">
+                    <% for (let item of user.cart) { %>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><%= item.name %></span>
+                            <span>$<%= item.price %></span>
+                        </li>
+                    <% } %>
+
+                    <li class="list-group-item active">
+                        Total: $<%= totalAmount %>
+                    </li>
+                </ul>
+
+                <!-- ✅ PayU Money Payment Form -->
+                <form action="payment_gateway/payumoney" method="POST" class="p-3 border rounded shadow-sm bg-light">
+                    <input type="hidden" class="amount" name="amount" value="<%= totalAmount %>" />
+                    <input type="hidden" class="con" name="phone" value="<%= user.phone || '' %>" />
+                    <input type="hidden" name="service_provider" value="payu_paisa" />
+                    <input type="hidden" class="product" name="productinfo" value="<%= productinfo %>" />
+
+                    <div class="d-grid">
+                        <input type="submit" value="Pay Now" class="btn btn-success fw-bold" />
+                    </div>
+                </form>
+            <% } %>
+        </div>
+    </div>
+</section>

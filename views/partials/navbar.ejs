@@ -30,7 +30,7 @@
           
         <% } else { %>
           <a href="#"  class="nav-link mx-2">Hello, <%= currentUser.username %></a>
-          <a href="#"  class="nav-link position-relative mx-2">
+          <a href="/user/cart"  class="nav-link position-relative mx-2">
           <i class="fa-solid fa-cart-shopping" style="color: #151414;"></i>  
           <sup><span class="badge bg-danger"><%=currentUser.cart.length%></span></sup>
         </a>

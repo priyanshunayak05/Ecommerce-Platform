@@ -16,6 +16,14 @@ const userSchema = new mongoose.Schema({
     cart:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
+    }],
+    gender: {type: String,
+        required: false,
+        trim: true
+    },
+    wishlist:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
     }]
 })
 
