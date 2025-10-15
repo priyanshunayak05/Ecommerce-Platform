@@ -1,16 +1,71 @@
-:root{
-    --main-color: #0077b6;
-}
-main{
-    margin-top: 5.5rem;
-}
+/* File: public/css/app.css */
 
-.img{
-    height: 300px;
-    width: 100%;
-
+:root {
+    --primary-color: #0d6efd; /* Bootstrap Blue */
+    --danger-color: #dc3545;  /* Bootstrap Red */
+    --heart-color: #e53935;   /* A vibrant red for the liked heart */
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --card-hover-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
-.product-card .btnn{
-    background-color: var(--main-color) ;
+body {
+    background-color: #f8f9fa; /* Light grey background for better contrast */
+}
+
+/* --- Card Styling --- */
+.card {
+    border: none; /* Remove the default border */
+    border-radius: 12px; /* Nicer, rounded corners */
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover; /* Prevents image stretching */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+/* --- Button Styling --- */
+.btn {
+    border-radius: 8px; /* Rounded buttons */
+    font-weight: 500;
+}
+
+.btn-info {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+/* --- Like Button (Heart) Styling --- */
+.like-btn {
+    font-size: 1.5rem; /* Makes the heart bigger */
+    cursor: pointer;
+    color: #ced4da; /* A light grey for the un-liked state */
+    transition: all 0.2s ease;
+}
+
+.like-btn:hover {
+    color: var(--heart-color); /* Turns red on hover */
+}
+
+.like-btn .fas.fa-heart {
+    /* This class is for the filled heart (when liked) */
+    color: var(--heart-color);
 }
