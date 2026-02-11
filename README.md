@@ -1,6 +1,6 @@
 # 🛒 E-Commerce Platform
 
-A full-stack E-Commerce web application built using **Node.js, Express, MongoDB, and EJS**, supporting both **buyers and sellers** with role-based access control and secure authentication.
+A E-Commerce web application built using **Node.js, Express, MongoDB, and EJS**, supporting both **buyers and sellers** with role-based access control and secure authentication.
 
 ---
 
@@ -54,36 +54,31 @@ A full-stack E-Commerce web application built using **Node.js, Express, MongoDB,
 
 ## 📁 Project Structure
 
+
 Ecommerce-Platform/
 │
-├── models/ # Database schemas
-├── routes/ # Express route handlers
-├── views/ # EJS templates
-├── public/ # Static files (CSS, images)
-├── middleware.js # Custom middleware functions
-├── app.js # Main application entry point
-├── schema.js # Validation schemas
-├── seed.js # Database seed script
-├── package.json # Project dependencies
+├── models/          # Database schemas
+├── routes/          # Express route handlers
+├── views/           # EJS templates
+├── public/          # Static files (CSS, images)
+├── middleware.js    # Custom middleware functions
+├── app.js           # Main application entry point
+├── schema.js        # Validation schemas
+├── seed.js          # Database seed script
+├── package.json     # Project dependencies
 └── .gitignore
 
 
----
 
-## ⚙️ Installation & Setup Guide
+⚙️ Installation & Setup Guide
 
 Follow these steps to run the project locally:
 
----
-
-### 1️⃣ Clone the Repository
-
-```bash```
+1️⃣ Clone the Repository
 git clone https://github.com/priyanshunayak05/Ecommerce-Platform.git
 cd Ecommerce-Platform
 
 2️⃣ Install Dependencies
-
 npm install
 
 3️⃣ Setup MongoDB
@@ -96,3 +91,86 @@ mongod
 
 
 Or use MongoDB Atlas and update the connection string in app.js.
+
+4️⃣ Configure Environment Variables (Optional but Recommended)
+
+Create a .env file in the root directory:
+
+SESSION_SECRET=your_secret_key
+
+
+Install dotenv:
+
+npm install dotenv
+
+
+Update app.js:
+
+require('dotenv').config();
+
+5️⃣ Seed the Database (Optional)
+
+To populate sample products:
+
+node seed.js
+
+6️⃣ Start the Server
+node app.js
+
+
+Or using nodemon:
+
+npx nodemon app.js
+
+7️⃣ Open in Browser
+
+Visit:
+
+http://localhost:3000
+
+🔐 Authentication Flow
+
+User registers.
+
+Password is hashed before storing in MongoDB.
+
+User logs in.
+
+Passport validates credentials.
+
+Session is created.
+
+Role-based middleware restricts route access.
+
+🗄 Database Design
+👤 User Schema
+
+username
+
+email
+
+password (hashed)
+
+role (buyer / seller)
+
+🛍 Product Schema
+
+title
+
+description
+
+price
+
+seller reference
+
+reviews
+
+likes
+
+⭐ Review Schema
+
+rating
+
+comment
+
+user reference
