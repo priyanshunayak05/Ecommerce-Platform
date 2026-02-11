@@ -146,7 +146,7 @@ Buyer → /product/:id\
 
 ## 1️⃣ Clone the Repository
 
-git clone [https://github.com/your-username/your-repository-name.git\](https://github.com/priyanshunayak05/Ecommerce-Platform.git)
+git clone https://github.com/priyanshunayak05/Ecommerce-Platform.git
 cd your-repository-name
 
 ## 2️⃣ Install Dependencies
