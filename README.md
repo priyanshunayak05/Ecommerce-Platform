@@ -178,19 +178,19 @@ http://localhost:3000
 
 # 🔐 Role-Based Access
 
-  Feature          Buyer    Seller
-  ---------------- ------- --------
-  View Products    ✅      ✅
+  Feature            Buyer     Seller
+
+  View Products      ✅         ✅
   
-  Add to Cart      ✅      ❌
+  Add to Cart        ✅         ❌
   
-  Add Product      ❌      ✅
+  Add Product        ❌         ✅
   
-  Edit Product     ❌      ✅
+  Edit Product       ❌         ✅
   
-  Delete Product   ❌      ✅
+  Delete Product     ❌         ✅
   
-  Write Review     ✅      ❌
+  Write Review       ✅         ❌
 
 ------------------------------------------------------------------------
 
