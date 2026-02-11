@@ -35,7 +35,7 @@ const productApi= require('./routes/api/productapi');
 const dbURL= process.env.DB_URL || 'mongodb://localhost:27017/Shopping-app';
 
 
-app.use(productApi); // all routes in product api will be prefixed with /api
+
 
 
 // override with POST having ?_method=DELETE
@@ -98,7 +98,7 @@ app.get("/", (req, res) => {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Ecommerce Home Page</title>
-        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/css/app.css" />
     </head>
     <body>
       <div class="container">
