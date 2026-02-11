@@ -146,7 +146,7 @@ Buyer → /product/:id\
 
 ## 1️⃣ Clone the Repository
 
-git clone https://github.com/your-username/your-repository-name.git\
+git clone [https://github.com/your-username/your-repository-name.git\](https://github.com/priyanshunayak05/Ecommerce-Platform.git)
 cd your-repository-name
 
 ## 2️⃣ Install Dependencies
@@ -177,13 +177,18 @@ http://localhost:3000
 
 # 🔐 Role-Based Access
 
-  Feature          Buyer   Seller
+  Feature          Buyer    Seller
   ---------------- ------- --------
   View Products    ✅      ✅
+  
   Add to Cart      ✅      ❌
+  
   Add Product      ❌      ✅
+  
   Edit Product     ❌      ✅
+  
   Delete Product   ❌      ✅
+  
   Write Review     ✅      ❌
 
 ------------------------------------------------------------------------
