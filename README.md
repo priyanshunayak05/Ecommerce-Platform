@@ -176,21 +176,17 @@ http://localhost:3000
 
 ------------------------------------------------------------------------
 
-# 🔐 Role-Based Access
+ ## 🔐 Role-Based Access Control
 
-  Feature            Buyer     Seller
+| Feature        | Buyer | Seller |
+|---------------|:-----:|:------:|
+| View Products |  Yes  |  Yes   |
+| Add to Cart   |  Yes  |   No   |
+| Add Product   |   No  |  Yes   |
+| Edit Product  |   No  |  Yes   |
+| Delete Product|   No  |  Yes   |
+| Write Review  |  Yes  |   No   |
 
-  View Products      ✅         ✅
-  
-  Add to Cart        ✅         ❌
-  
-  Add Product        ❌         ✅
-  
-  Edit Product       ❌         ✅
-  
-  Delete Product     ❌         ✅
-  
-  Write Review       ✅         ❌
 
 ------------------------------------------------------------------------
 
